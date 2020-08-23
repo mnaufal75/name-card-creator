@@ -1,26 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import LeftMenu from './LeftMenu';
+import Content from './Content';
+import RightMenu from './RightMenu';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      card: [
+        {
+          show: false,
+          title: 'Card A',
+          firstName: '',
+          lastName: '',
+          yourCity: ''
+        },
+        {
+          show: false,
+          title: 'Card B',
+          name: '',
+          company: '',
+          role: '',
+          phoneNumber: ''
+        }
+      ],
+      choose: null,
+      leftMenu: false,
+      rightMenu: false
+    }
+
+    this.showMenu = this.showMenu.bind(this);
+    this.callback = this.callback.bind(this);
+  }
+
+  showMenu() {
+    this.setState({ leftMenu: !this.state.leftMenu });
+    console.log(this.state.leftMenu);
+  }
+
+  callback(data) {
+    console.log(data);
+    this.setState({ choose: data });
+  }
+
+  render() {
+    return (
+      <div className="component-app">
+        <div className="Card">
+          <h3>Header</h3>
+          <img alt="plusButton" className="plusButton" src="plus" onClick={this.showMenu} />
+          {this.state.leftMenu && <LeftMenu data={this.state.card} parentCallback={this.callback} />}
+          <Content />
+          {this.state.choose && <RightMenu data={this.state.choose} />}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
