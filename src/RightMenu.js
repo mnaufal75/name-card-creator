@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './RightMenu.css';
 
 const RightMenu = (props) => {
   const handleChange = (event) => {
@@ -19,43 +20,31 @@ const RightMenu = (props) => {
 
   if (title === 'Card A') {
     return (
-      <form className="rightMenu">
-        <h3>{title}</h3>
-        <label>
-          First Name
-          <input type="text" name="firstName" onChange={handleChange} value={firstName || ''} />
-        </label>
-        <label>
-          Last Name
-          <input type="text" name="lastName" onChange={handleChange} value={lastName || ''} />
-        </label>
-        <label>
-          Your City
-          <input type="text" name="yourCity" onChange={handleChange} value={yourCity || ''} />
-        </label>
+      <div className="rightMenu">
+      <form>
+        <label>First Name</label>
+        <input type="text" name="firstName" onChange={handleChange} value={firstName || ''} />
+        <label> Last Name</label>
+        <input type="text" name="lastName" onChange={handleChange} value={lastName || ''} />
+        <label>Your City</label>
+        <input type="text" name="yourCity" onChange={handleChange} value={yourCity || ''} />
       </form>
+      </div>
     );
   } else if (title === 'Card B') {
     return (
+      <div>
       <form className="rightMenu">
-        <h3>{title}</h3>
-        <label>
-          Name
-          <input type="text" name="name" onChange={handleChange} value={name || ''} />
-        </label>
-        <label>
-          Company
-          <input type="text" name="company" onChange={handleChange} value={company || ''} />
-        </label>
-        <label>
-          Role
-          <input type="text" name="role" onChange={handleChange} value={role || ''} />
-        </label>
-        <label>
-          Phone Number
-          <input type="text" name="phoneNumber" onChange={handleChange} value={phoneNumber || ''} />
-        </label>
+        <label>Name</label>
+        <input type="text" name="name" onChange={handleChange} value={name || ''} />
+        <label>Company</label>
+        <input type="text" name="company" onChange={handleChange} value={company || ''} />
+        <label>Role</label>
+        <input type="text" name="role" onChange={handleChange} value={role || ''} />
+        <label>Phone Number</label>
+        <input type="text" name="phoneNumber" onChange={handleChange} value={phoneNumber || ''} />
       </form>
+      </div>
     );
   }
 }

@@ -1,0 +1,10 @@
+.content {
+    text-align: left;
+    position: fixed;
+    left: 20%;
+    padding-left: 10px;
+    box-sizing: border-box;
+    margin: 20px;
+    border: 1px solid;
+    border-radius: 10px;
+}

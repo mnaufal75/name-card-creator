@@ -1,0 +1,21 @@
+.rightMenu {
+    position: fixed;
+    right: 0;
+    text-align: left;
+    width: 20%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid;
+}
+
+label {
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}

@@ -60,14 +60,14 @@ class App extends Component {
   }
 
   render() {
-    const { card, key } = this.state;
+    const { card, key, leftMenu } = this.state;
 
     return (
       <div className="component-app">
         <h3>Header</h3>
         <img alt="plusButton" className="plusButton" src="plus" onClick={this.showMenu} />
         {this.state.leftMenu && <LeftMenu data={card} parentCallback={this.leftMenuCallback} parentCallback2={this.showMenu} />}
-        {key && <Content data={card[key]} keyProp={key} />}
+        {key && <Content data={card[key]} keyProp={key} leftMenu={leftMenu} />}
         {key && <RightMenu data={card[key]} keyProp={key} parentCallback={this.rightMenuCallback} />}
       </div>
     );
