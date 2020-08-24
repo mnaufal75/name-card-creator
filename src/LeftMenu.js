@@ -8,18 +8,19 @@ class Menu extends Component {
     this.sendData = this.sendData.bind(this);
   }
 
-  sendData(data) {
-    return this.props.parentCallback(data);
+  sendData(key) {
+    console.log(key);
+    return this.props.parentCallback(key);
   }
 
   render() {
     const data = this.props.data;
-    const listCard = data.map((card) =>
-      <li onClick={() => this.sendData(card)} >{card.title}</li>
+    const listCard = Object.keys(data).map((key) =>
+      <li key={key} onClick={() => this.sendData(key)} >{data[key].title}</li>
     );
 
     return (
-      <div className="Menu">
+      <div className="leftMenu">
         <ul>{listCard}</ul>
       </div>
     );

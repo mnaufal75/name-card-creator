@@ -9,15 +9,15 @@ class App extends Component {
     super(props);
 
     this.state = {
-      card: [
-        {
+      card: {
+        cardA: {
           show: false,
           title: 'Card A',
           firstName: '',
           lastName: '',
           yourCity: ''
         },
-        {
+        cardB: {
           show: false,
           title: 'Card B',
           name: '',
@@ -25,36 +25,50 @@ class App extends Component {
           role: '',
           phoneNumber: ''
         }
-      ],
-      choose: null,
+      },
+
       leftMenu: false,
-      rightMenu: false
+      key: "",
     }
 
     this.showMenu = this.showMenu.bind(this);
-    this.callback = this.callback.bind(this);
+    this.leftMenuCallback = this.leftMenuCallback.bind(this);
+    this.rightMenuCallback = this.rightMenuCallback.bind(this);
   }
 
   showMenu() {
     this.setState({ leftMenu: !this.state.leftMenu });
-    console.log(this.state.leftMenu);
   }
 
-  callback(data) {
-    console.log(data);
-    this.setState({ choose: data });
+  leftMenuCallback(key) {
+    console.log("left ", key);
+
+    if (key === 'cardA') {
+      this.setState({ key: key });
+    } else if (key === 'cardB') {
+      this.setState({ key: key });
+    }
+  }
+
+  rightMenuCallback(key, data) {
+    console.log("right ", key);
+
+    const newCard = this.state.card;
+    newCard[key] = data;
+
+    this.setState({ key: key, card: newCard });
   }
 
   render() {
+    const { card, key } = this.state;
+
     return (
       <div className="component-app">
-        <div className="Card">
-          <h3>Header</h3>
-          <img alt="plusButton" className="plusButton" src="plus" onClick={this.showMenu} />
-          {this.state.leftMenu && <LeftMenu data={this.state.card} parentCallback={this.callback} />}
-          <Content />
-          {this.state.choose && <RightMenu data={this.state.choose} />}
-        </div>
+        <h3>Header</h3>
+        <img alt="plusButton" className="plusButton" src="plus" onClick={this.showMenu} />
+        {this.state.leftMenu && <LeftMenu data={card} parentCallback={this.leftMenuCallback} />}
+        {key && <Content data={card[key]} keyProp={key} />}
+        {key && <RightMenu data={card[key]} keyProp={key} parentCallback={this.rightMenuCallback} />}
       </div>
     );
   }
