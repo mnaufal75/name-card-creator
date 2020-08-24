@@ -6,11 +6,16 @@ class Menu extends Component {
     super(props);
 
     this.sendData = this.sendData.bind(this);
+    this.closeMenu = this.closeMenu.bind(this);
   }
 
   sendData(key) {
     console.log(key);
     return this.props.parentCallback(key);
+  }
+
+  closeMenu() {
+    return this.props.parentCallback2();
   }
 
   render() {
@@ -22,6 +27,8 @@ class Menu extends Component {
     return (
       <div className="leftMenu">
         <ul>{listCard}</ul>
+
+        <img alt="closeButton" className="closeButton" src="close" onClick={this.closeMenu} />
       </div>
     );
   }
