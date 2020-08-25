@@ -1,5 +1,6 @@
 import React from 'react';
 import './Content.css';
+import { useDrop } from 'react-dnd';
 
 const Content = (props) => {
   const { title, firstName, lastName, yourCity, name, company, role, phoneNumber } = props.data;
@@ -15,9 +16,19 @@ const Content = (props) => {
     margin: '100px 50px',
   }
 
+  const [{ canDrop, isOver }, drop] = useDrop({
+    accept: 'card',
+    drop: () => ({ name:  'Kotak'}),
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop(),
+    })
+  })
+  const isActive = canDrop && isOver
+
   if (title === 'Card A') {
     return (
-      <div style={isLeft ? show : notShow} className="content">
+      <div ref={drop} style={isLeft ? show : notShow} className="content">
         <h3>CARD A</h3>
         <br />
         <h4>First Name: {firstName}</h4>
@@ -27,7 +38,7 @@ const Content = (props) => {
     );
   } else if (title === 'Card B') {
     return (
-      <div style={isLeft ? show : notShow} className="content">
+      <div ref={drop} style={isLeft ? show : notShow} className="content">
         <h3>CARD B</h3>
         <br />
         <h4>Name: {name}</h4>

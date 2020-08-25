@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from './Card';
 import './LeftMenu.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -6,7 +7,6 @@ import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 
 const Menu = (props) => {
   const sendData = (key) => {
-    console.log(key);
     return props.parentCallback(key);
   }
 
@@ -16,12 +16,13 @@ const Menu = (props) => {
 
   const data = props.data;
   const listCard = Object.keys(data).map((key) =>
-    <li key={key} onClick={() => sendData(key)} >{data[key].title}</li>
+    // <li ref={drag} key={key} onClick={() => sendData(key)} >{data[key].title}</li>
+    <Card keyProp={key} onClick={() => sendData(key)} title={data[key].title} />
   );
 
   return (
     <div className="leftMenu">
-      <ul>{listCard}</ul>
+      {listCard}
 
       <FontAwesomeIcon className="closeButton" icon={faCaretLeft} size="2x" onClick={closeMenu} />
     </div>

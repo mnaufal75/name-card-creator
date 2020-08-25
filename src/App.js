@@ -8,6 +8,9 @@ import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -68,19 +71,21 @@ class App extends Component {
 
     return (
       <div className="component-app">
-        <header>
-          <h3>Header</h3>
-        </header>
+        <DndProvider backend={HTML5Backend}>
+          <header>
+            <h3>Header</h3>
+          </header>
 
-        <div className="left">
-          {!this.state.leftMenu && <FontAwesomeIcon className="plusButton" icon={faPlusCircle} size="4x" onClick={this.showMenu} />}
-        </div>
-        {this.state.leftMenu && <LeftMenu data={card} parentCallback={this.leftMenuCallback} parentCallback2={this.showMenu} /> }
+          <div className="left">
+            {!this.state.leftMenu && <FontAwesomeIcon className="plusButton" icon={faPlusCircle} size="4x" onClick={this.showMenu} />}
+          </div>
+          {this.state.leftMenu && <LeftMenu data={card} parentCallback={this.leftMenuCallback} parentCallback2={this.showMenu} /> }
 
-        {key && <Content data={card[key]} keyProp={key} leftMenu={leftMenu} />}
-        {!key && <EmptyContent leftMenu={leftMenu} />}
+          {key && <Content data={card[key]} keyProp={key} leftMenu={leftMenu} />}
+          {!key && <EmptyContent leftMenu={leftMenu} />}
 
-        {key && <RightMenu data={card[key]} keyProp={key} parentCallback={this.rightMenuCallback} />}
+          {key && <RightMenu data={card[key]} keyProp={key} parentCallback={this.rightMenuCallback} />}
+        </DndProvider>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import './EmptyContent.css';
+import { useDrop } from 'react-dnd';
 
 const EmptyContent = (props) => {
   const first = {
@@ -23,6 +24,16 @@ const EmptyContent = (props) => {
 
   const isLeft = props.leftMenu;
 
+  const [{ canDrop, isOver }, drop] = useDrop({
+    accept: 'card',
+    drop: () => ({ name:  'Kotak'}),
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop(),
+    })
+  })
+  const isActive = canDrop && isOver
+
   if (!isLeft) {
     return (
       <div style={first} className="content">
@@ -31,7 +42,8 @@ const EmptyContent = (props) => {
     )
   } else {
     return (
-      <div style={second} className="content">
+      <div ref={drop} style={second} className="content">
+        {isActive ? '' : ''}
       </div>
     )
   }
