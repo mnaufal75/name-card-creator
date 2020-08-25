@@ -6,6 +6,7 @@
     border-radius: 10px;
     box-sizing: border-box;
     padding: 25px 50px 25px 0;
+    transition: 0.5s;
 }
 
 ul {

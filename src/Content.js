@@ -10,14 +10,15 @@ const Content = (props) => {
     left: "20%"
   }
   const notShow = {
-    width: 'calc(80% - 40px)',
-    left: 0
+    width: 'calc(70% - 100px)',
+    left: "10%",
+    margin: '100px 50px',
   }
 
   if (title === 'Card A') {
     return (
       <div style={isLeft ? show : notShow} className="content">
-        <h3>{title}</h3>
+        <h3>CARD A</h3>
         <br />
         <h4>First Name: {firstName}</h4>
         <h4>Last Name: {lastName}</h4>
@@ -27,7 +28,7 @@ const Content = (props) => {
   } else if (title === 'Card B') {
     return (
       <div style={isLeft ? show : notShow} className="content">
-        <h3>{title}</h3>
+        <h3>CARD B</h3>
         <br />
         <h4>Name: {name}</h4>
         <h4>Company: {company}</h4>

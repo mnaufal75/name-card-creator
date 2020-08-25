@@ -1,6 +1,9 @@
 import React from 'react';
 import './LeftMenu.css';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
+
 const Menu = (props) => {
   const sendData = (key) => {
     console.log(key);
@@ -20,7 +23,7 @@ const Menu = (props) => {
     <div className="leftMenu">
       <ul>{listCard}</ul>
 
-      <img alt="closeButton" className="closeButton" src="close" onClick={closeMenu} />
+      <FontAwesomeIcon className="closeButton" icon={faCaretLeft} size="2x" onClick={closeMenu} />
     </div>
   );
 }

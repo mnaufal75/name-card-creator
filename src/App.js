@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import LeftMenu from './LeftMenu';
+import EmptyContent from './EmptyContent';
 import Content from './Content';
 import RightMenu from './RightMenu';
 import './App.css';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
 
 class App extends Component {
   constructor(props) {
@@ -64,10 +68,18 @@ class App extends Component {
 
     return (
       <div className="component-app">
-        <h3>Header</h3>
-        <img alt="plusButton" className="plusButton" src="plus" onClick={this.showMenu} />
-        {this.state.leftMenu && <LeftMenu data={card} parentCallback={this.leftMenuCallback} parentCallback2={this.showMenu} />}
+        <header>
+          <h3>Header</h3>
+        </header>
+
+        <div className="left">
+          {!this.state.leftMenu && <FontAwesomeIcon className="plusButton" icon={faPlusCircle} size="4x" onClick={this.showMenu} />}
+        </div>
+        {this.state.leftMenu && <LeftMenu data={card} parentCallback={this.leftMenuCallback} parentCallback2={this.showMenu} /> }
+
         {key && <Content data={card[key]} keyProp={key} leftMenu={leftMenu} />}
+        {!key && <EmptyContent leftMenu={leftMenu} />}
+
         {key && <RightMenu data={card[key]} keyProp={key} parentCallback={this.rightMenuCallback} />}
       </div>
     );
