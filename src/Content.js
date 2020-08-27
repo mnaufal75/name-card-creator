@@ -7,24 +7,19 @@ const Content = (props) => {
   const isLeft = props.leftMenu;
 
   const show = {
-    width: 'calc(60% - 40px)',
-    left: "20%"
+    width: 'calc(50% - 100px)',
+    left: "25%",
+    margin: '50px 50px'
   }
   const notShow = {
-    width: 'calc(70% - 100px)',
+    width: 'calc(65% - 100px)',
     left: "10%",
-    margin: '100px 50px',
+    margin: '50px 50px',
   }
 
-  const [{ canDrop, isOver }, drop] = useDrop({
+  const [{}, drop] = useDrop({
     accept: 'card',
-    drop: () => ({ name:  'Kotak'}),
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
-    })
   })
-  const isActive = canDrop && isOver
 
   if (title === 'Card A') {
     return (

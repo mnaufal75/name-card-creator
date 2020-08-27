@@ -5,18 +5,16 @@ import './LeftMenu.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 
-const Menu = (props) => {
+const Menu = ({ data, parentCallback, parentCallback2 }) => {
   const sendData = (key) => {
-    return props.parentCallback(key);
+    return parentCallback(key);
   }
 
   const closeMenu = () => {
-    return props.parentCallback2();
+    return parentCallback2();
   }
 
-  const data = props.data;
   const listCard = Object.keys(data).map((key) =>
-    // <li ref={drag} key={key} onClick={() => sendData(key)} >{data[key].title}</li>
     <Card keyProp={key} onClick={() => sendData(key)} title={data[key].title} />
   );
 

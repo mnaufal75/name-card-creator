@@ -4,12 +4,12 @@ import { useDrop } from 'react-dnd';
 
 const EmptyContent = (props) => {
   const first = {
-    width: 'calc(90% - 400px)',
-    height: '300px',
+    width: 'calc(90% - 500px)',
+    height: '250px',
     left: "10%",
-    margin: '100px 200px',
+    margin: '100px 250px',
     textAlign: 'center',
-    lineHeight: '300px',
+    lineHeight: '250px',
     boxsizing: 'border-box',
     padding: 0,
     transition: '0.5s'
@@ -24,15 +24,9 @@ const EmptyContent = (props) => {
 
   const isLeft = props.leftMenu;
 
-  const [{ canDrop, isOver }, drop] = useDrop({
-    accept: 'card',
-    drop: () => ({ name:  'Kotak'}),
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
-    })
+  const [{}, drop] = useDrop({
+    accept: 'card'
   })
-  const isActive = canDrop && isOver
 
   if (!isLeft) {
     return (
@@ -43,7 +37,6 @@ const EmptyContent = (props) => {
   } else {
     return (
       <div ref={drop} style={second} className="content">
-        {isActive ? '' : ''}
       </div>
     )
   }

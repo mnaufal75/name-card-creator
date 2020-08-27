@@ -77,13 +77,13 @@ class App extends Component {
           </header>
 
           <div className="left">
-            {!this.state.leftMenu && <FontAwesomeIcon className="plusButton" icon={faPlusCircle} size="4x" onClick={this.showMenu} />}
+            {!leftMenu && <FontAwesomeIcon className="plusButton" icon={faPlusCircle} size="4x" onClick={this.showMenu} />}
           </div>
-          {this.state.leftMenu && <LeftMenu data={card} parentCallback={this.leftMenuCallback} parentCallback2={this.showMenu} /> }
+          {leftMenu && <LeftMenu data={card} parentCallback={this.leftMenuCallback} parentCallback2={this.showMenu} /> }
 
-          {key && <Content data={card[key]} keyProp={key} leftMenu={leftMenu} />}
           {!key && <EmptyContent leftMenu={leftMenu} />}
 
+          {key && <Content data={card[key]} keyProp={key} leftMenu={leftMenu} />}
           {key && <RightMenu data={card[key]} keyProp={key} parentCallback={this.rightMenuCallback} />}
         </DndProvider>
       </div>
