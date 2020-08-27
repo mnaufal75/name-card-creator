@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Name Card Creator
+
+Open [https://mnaufal75.github.io/name-card-creator/](https://mnaufal75.github.io/name-card-creator/) to view it in the browser live.
+
 ## Available Scripts
 
 In the project directory, you can run:
