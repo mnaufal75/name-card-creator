@@ -14,11 +14,7 @@ const Card = ({ keyProp, title, onClick }) => {
     }
   })
 
-  const click = () => {
-    return onClick();
-  }
-
-  return <div key={keyProp} ref={drag} className="card" onClick={click}>{title}</div>
+  return <div key={keyProp} ref={drag} className="card" onClick={onClick}>{title}</div>
 }
 
 export default Card;

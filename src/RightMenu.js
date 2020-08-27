@@ -1,7 +1,7 @@
 import React from 'react';
 import './RightMenu.css';
 
-const RightMenu = ({ data, keyProp, parentCallback }) => {
+const RightMenu = ({ data, keyProp, onChange }) => {
   const { title, firstName, lastName, yourCity, name, company, role, phoneNumber } = data;
 
   const handleChange = (event) => {
@@ -9,7 +9,7 @@ const RightMenu = ({ data, keyProp, parentCallback }) => {
     const newData = data;
     newData[name] = event.target.value;
 
-    return parentCallback(keyProp, newData);
+    return onChange(keyProp, newData);
   }
 
   if (title === 'Card A') {

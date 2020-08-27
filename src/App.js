@@ -38,18 +38,16 @@ class App extends Component {
       key: "",
     }
 
-    this.showMenu = this.showMenu.bind(this);
-    this.leftMenuCallback = this.leftMenuCallback.bind(this);
-    this.rightMenuCallback = this.rightMenuCallback.bind(this);
+    this.handleClickButton = this.handleClickButton.bind(this);
+    this.handleClickCard = this.handleClickCard.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  showMenu() {
+  handleClickButton() {
     this.setState({ leftMenu: !this.state.leftMenu });
   }
 
-  leftMenuCallback(key) {
-    console.log("left ", key);
-
+  handleClickCard(key) {
     if (key === 'cardA') {
       this.setState({ key: key });
     } else if (key === 'cardB') {
@@ -57,9 +55,7 @@ class App extends Component {
     }
   }
 
-  rightMenuCallback(key, data) {
-    console.log("right ", key);
-
+  handleChange(key, data) {
     const newCard = this.state.card;
     newCard[key] = data;
 
@@ -77,14 +73,15 @@ class App extends Component {
           </header>
 
           <div className="left">
-            {!leftMenu && <FontAwesomeIcon className="plusButton" icon={faPlusCircle} size="4x" onClick={this.showMenu} />}
+            {!leftMenu && <FontAwesomeIcon className="plusButton" icon={faPlusCircle} size="4x" onClick={this.handleClickButton} />}
           </div>
-          {leftMenu && <LeftMenu data={card} parentCallback={this.leftMenuCallback} parentCallback2={this.showMenu} /> }
+          {/* {leftMenu && <LeftMenu data={card} parentCallback={this.leftMenuCallback} parentCallback2={this.showMenu} /> } */}
+          {leftMenu && <LeftMenu data={card} onClickCard={this.handleClickCard} onClickButton={this.handleClickButton} /> }
 
           {!key && <EmptyContent leftMenu={leftMenu} />}
 
           {key && <Content data={card[key]} keyProp={key} leftMenu={leftMenu} />}
-          {key && <RightMenu data={card[key]} keyProp={key} parentCallback={this.rightMenuCallback} />}
+          {key && <RightMenu data={card[key]} keyProp={key} onChange={this.handleChange} />}
         </DndProvider>
       </div>
     );
